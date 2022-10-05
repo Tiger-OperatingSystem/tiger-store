@@ -1,0 +1,14 @@
+{
+  "name": "tiger-store",
+  "version": "1.0.0",
+  "description": "Um cliente Electron não oficial da Flathub para ser usado como Loja de apps do Tiger OS",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Natanael Barbosa Santos",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "~1.6.2"
+  }
+}
