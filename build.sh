@@ -14,11 +14,15 @@ working_dir=$(mktemp -d)
 
 mkdir -p "${working_dir}/usr/lib/tiger-os/tiger-store/resources/"
 mkdir -p "${working_dir}/usr/share/applications/"
+mkdir -p "${working_dir}/usr/bin/"
 mkdir -p "${working_dir}/DEBIAN/"
 
 cp -v "${HERE}/main.js"      "${working_dir}/usr/lib/tiger-os/tiger-store/resources/"
 cp -v "${HERE}/package.json" "${working_dir}/usr/lib/tiger-os/tiger-store/resources/"
-#cp -v "${HERE}/tiger-store.desktop" "${working_dir}/usr/share/applications/"
+cp -v "${HERE}/tiger-store.desktop" "${working_dir}/usr/share/applications/"
+cp -v "${HERE}/tiger-store" "${working_dir}/usr/bin/"
+
+chmod +x "${working_dir}/usr/bin/tiger-store"
 
 (
   cd "${working_dir}/usr/lib/tiger-os/tiger-store/"
