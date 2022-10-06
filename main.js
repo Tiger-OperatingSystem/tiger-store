@@ -75,6 +75,10 @@ function createWindow () {
     } else {
       btn_title = "Instalar";
     }
+    
+    if (win.webContents.getURL()=="https://flathub.org/home"){
+      win.loadURL("https://flathub.org/apps/collection/popular");
+    }
 
     win.webContents.executeJavaScript("btn_title = \""+btn_title+"\""+script); 
   });
