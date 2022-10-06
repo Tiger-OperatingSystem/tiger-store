@@ -63,7 +63,7 @@ for (let element of document.getElementsByClassName("mat-button-wrapper")) {
 function createWindow () {
   win = new BrowserWindow({width: 800, height: 600})
   win.setMenuBarVisibility(false);
-  win.loadURL(url.format({pathname: path.join('flathub.org'),protocol: 'https:',slashes: true}));
+  win.loadURL(url.format({pathname: path.join('flathub.org/apps/collection/popular'),protocol: 'https:',slashes: true}));
   win.maximize();
 
   win.on("page-title-updated", function(event) {
