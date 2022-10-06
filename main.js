@@ -25,7 +25,7 @@ if (document.getElementsByTagName("store-footer")[0]) {
   document.getElementsByTagName("store-footer")[0].remove()
 }
 
-// Botões Públicar, Fórum, Sobre
+// Botões Publicar, Fórum, Sobre
 if (document.getElementsByClassName("toolbar-nav")[0]) {
   document.getElementsByClassName("toolbar-nav")[0].remove()
 }
@@ -86,9 +86,9 @@ function createWindow () {
     item.cancel(); // Cancela o download, passe para o interceptador
 
     if (fs.existsSync("/var/lib/flatpak/app/"+package+"/current/active/files/manifest.json")) {
-      spawner("flatpak-remove", [package])
+      spawner("flatpak-install-gui", ["--override-appname="+package_name,"--remove",package])
     } else {
-      spawner("flatpak-install", [package])
+      spawner("flatpak-install-gui", ["--override-appname="+package_name,package])
     }
   });
 }
