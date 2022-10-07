@@ -84,6 +84,56 @@ for (let element of document.getElementsByTagName("a")) {
       element.innerText = "Populares"
     break;
     case "All":
+      element.parentElement.remove()
+    break;
+    case "Audio & Video":
+      element.innerText = "Audiovisual"
+    break;
+    case "Developer Tools":
+      element.innerText = "Desenvolvimento"
+    break;
+    case "Education":
+      element.innerText = "Educação"
+    break;
+    case "Graphics & Photography":
+      element.innerText = "Desenhos e fotografias"
+    break;
+    case "Communication & News":
+      element.innerText = "Internet"
+    break;
+    case "Productivity":
+      element.innerText = "Office e Produtividade"
+    break;
+    case "Science":
+      element.innerText = "Produção científica"
+    break;
+    case "System":
+      element.innerText = "Ferramentas de ajuste"
+    break;
+    case "Utilities":
+      element.innerText = "Acessórios e outros"
+    break;
+    case "Games":
+      element.parentElement.remove()
+    break;
+  }
+}
+
+for (let element of document.getElementsByTagName("h2")) {
+  switch (document.title.replace("—Linux Apps on Flathub","")) {
+    case "Editor's Choice Apps":
+      element.innerText = "Recomendados"
+    break;
+    case "Recently Updated Apps":
+      element.innerText = "Atualizados recentemente"
+    break;
+    case "New Apps":
+      element.innerText = "Novos apps"
+    break;
+    case "Popular Apps":
+      element.innerText = "Populares"
+    break;
+    case "All applications":
       element.innerText = "Todos"
     break;
     case "Audio & Video":
@@ -126,6 +176,8 @@ function createWindow () {
   win.setMenuBarVisibility(false);
   win.loadURL(url.format({pathname: path.join('flathub.org/apps/collection/popular'),protocol: 'https:',slashes: true}));
   win.maximize();
+  win.title="Tiger Store - Flathub"
+  win.icon="/usr/lib/tiger-os/tiger-store/resources/tiger-store-window-icon.png"
 
   win.on("page-title-updated", function(event) {
     let package = win.webContents.getURL().replace("https://flathub.org/apps/details/","");
@@ -137,10 +189,46 @@ function createWindow () {
       btn_title = "Instalar";
     }
     
-    if (win.webContents.getURL()=="https://flathub.org/home"){
-      win.loadURL("https://flathub.org/apps/collection/popular");
+    if (fs.existsSync("/usr/lib/tiger-os/tiger-store/resources/index.html")) {
+      if (win.webContents.getURL()=="https://flathub.org/home"){
+        win.loadURL("/usr/lib/tiger-os/tiger-store/resources/index.html");
+      }
+    } else {
+      if (win.webContents.getURL()=="https://flathub.org/home"){
+        win.loadURL("https://flathub.org/apps/collection/popular");
+      }
     }
 
+    win.webContents.executeJavaScript("btn_title = \""+btn_title+"\""+script); 
+    event.preventDefault();
+  });
+
+  win.on("ready-to-show", function(event) {
+    let package = win.webContents.getURL().replace("https://flathub.org/apps/details/","");
+    console.log(package);
+
+    if (fs.existsSync("/var/lib/flatpak/app/"+package+"/current/active/files/manifest.json")) {
+      btn_title = "Remover";
+    } else {
+      btn_title = "Instalar";
+    }
+
+    if (fs.existsSync("/var/lib/flatpak/app/"+package+"/current/active/files/manifest.json")) {
+      btn_title = "Remover";
+    } else {
+      btn_title = "Instalar";
+    }
+
+    if (fs.existsSync("/usr/lib/tiger-os/tiger-store/resources/index.html")) {
+      if (win.webContents.getURL()=="https://flathub.org/home"){
+        win.loadURL("/usr/lib/tiger-os/tiger-store/resources/index.html");
+      }
+    } else {
+      if (win.webContents.getURL()=="https://flathub.org/home"){
+        win.loadURL("https://flathub.org/apps/collection/popular");
+      }
+    }
+    
     win.webContents.executeJavaScript("btn_title = \""+btn_title+"\""+script); 
   });
 
