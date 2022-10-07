@@ -17,12 +17,7 @@ mkdir -p "${working_dir}/usr/share/applications/"
 mkdir -p "${working_dir}/usr/bin/"
 mkdir -p "${working_dir}/DEBIAN/"
 
-cp -v "${HERE}/main.js"      "${working_dir}/usr/lib/tiger-os/tiger-store/resources/"
-cp -v "${HERE}/package.json" "${working_dir}/usr/lib/tiger-os/tiger-store/resources/"
-cp -v "${HERE}/tiger-store.desktop" "${working_dir}/usr/share/applications/"
-cp -v "${HERE}/tiger-store" "${working_dir}/usr/bin/"
-
-chmod +x "${working_dir}/usr/bin/tiger-store"
+cp -rv "${HERE}/"*      "${working_dir}/usr/lib/tiger-os/tiger-store/resources/"
 
 (
   cd "${working_dir}/usr/lib/tiger-os/tiger-store/"
@@ -31,8 +26,14 @@ chmod +x "${working_dir}/usr/bin/tiger-store"
   rm "electron-v21.1.0-linux-x64.zip"
 )
 
-chmod +x "${working_dir}/usr/lib/tiger-os/jitsi-launcher.sh"
+rm "${working_dir}/usr/lib/tiger-os/tiger-store/resources/build.sh"
+rm "${working_dir}/usr/lib/tiger-os/tiger-store/resources/README.md"
+rm "${working_dir}/usr/lib/tiger-os/tiger-store/resources/LICENSE"
+rm -rf "${working_dir}/usr/lib/tiger-os/tiger-store/resources/.github/workflows"
 
+mv "${working_dir}/usr/lib/tiger-os/tiger-store/resources/tiger-store" "${working_dir}/usr/bin/tiger-store"
+mv "${working_dir}/usr/lib/tiger-os/tiger-store/resources"/*.desktop "${working_dir}/usr/share/applications/"
+chmod +x "${working_dir}/usr/bin/tiger-store"
 (
  echo "Package: tiger-store"
  echo "Priority: optional"
