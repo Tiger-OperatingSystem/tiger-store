@@ -58,6 +58,67 @@ for (let element of document.getElementsByClassName("mat-button-wrapper")) {
 
 // Traduções
 
+for (let element of document.getElementsByTagName("h3")) {
+  switch (element.innerText) {
+    case "DISCOVER":
+      element.innerText = "Recomendados"
+    break;
+    case "CATEGORIES":
+      element.innerText = "Categorias"
+    break;
+  }
+}
+
+for (let element of document.getElementsByTagName("a")) {
+  switch (element.innerText) {
+    case "Editor's Choice":
+      element.innerText = "Recomendados"
+    break;
+    case "Recently Updated":
+      element.innerText = "Atualizados recentemente"
+    break;
+    case "New Apps":
+      element.innerText = "Novos apps"
+    break;
+    case "Popular":
+      element.innerText = "Populares"
+    break;
+    case "All":
+      element.innerText = "Todos"
+    break;
+    case "Audio & Video":
+      element.innerText = "Audiovisual"
+    break;
+    case "Developer Tools":
+      element.innerText = "Desenvolvimento"
+    break;
+    case "Education":
+      element.innerText = "Educação"
+    break;
+    case "Graphics & Photography":
+      element.innerText = "Desenhos e fotografias"
+    break;
+    case "Communication & News":
+      element.innerText = "Internet"
+    break;
+    case "Productivity":
+      element.innerText = "Office e Produtividade"
+    break;
+    case "Science":
+      element.innerText = "Produção científica"
+    break;
+    case "System":
+      element.innerText = "Ferramentas de ajuste"
+    break;
+    case "Utilities":
+      element.innerText = "Acessórios e outros"
+    break;
+    case "Games":
+      element.parentElement.remove()
+    break;
+  }
+}
+
 `
 
 function createWindow () {
